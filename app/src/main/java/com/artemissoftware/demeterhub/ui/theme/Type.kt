@@ -1,34 +1,37 @@
 package com.artemissoftware.demeterhub.ui.theme
 
 import androidx.compose.material3.Typography
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import com.artemissoftware.demeterhub.R
 
+val PoppinsFontFamily = FontFamily(
+    Font(R.font.poppins_regular, FontWeight.Normal),
+    Font(R.font.poppins_medium, FontWeight.Medium),
+    Font(R.font.poppins_semi_bold, FontWeight.SemiBold),
+    Font(R.font.poppins_bold, FontWeight.Bold),
+    Font(R.font.poppins_thin, FontWeight.Thin),
+    Font(R.font.poppins_light, FontWeight.Light),
+    Font(R.font.poppins_extra_light, FontWeight.ExtraLight),
+    Font(R.font.poppins_black, FontWeight.Black)
+)
+val baseline = Typography()
 // Set of Material typography styles to start with
 val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+    displayLarge = baseline.displayLarge.copy(fontFamily = PoppinsFontFamily),
+    displayMedium = baseline.displayMedium.copy(fontFamily = PoppinsFontFamily),
+    displaySmall = baseline.displaySmall.copy(fontFamily = PoppinsFontFamily),
+    headlineLarge = baseline.headlineLarge.copy(fontFamily = PoppinsFontFamily),
+    headlineMedium = baseline.headlineMedium.copy(fontFamily = PoppinsFontFamily),
+    headlineSmall = baseline.headlineSmall.copy(fontFamily = PoppinsFontFamily),
+    titleLarge = baseline.titleLarge.copy(fontFamily = PoppinsFontFamily),
+    titleMedium = baseline.titleMedium.copy(fontFamily = PoppinsFontFamily),
+    titleSmall = baseline.titleSmall.copy(fontFamily = PoppinsFontFamily),
+    bodyLarge = baseline.bodyLarge.copy(fontFamily = PoppinsFontFamily),
+    bodyMedium = baseline.bodyMedium.copy(fontFamily = PoppinsFontFamily),
+    bodySmall = baseline.bodySmall.copy(fontFamily = PoppinsFontFamily),
+    labelLarge = baseline.labelLarge.copy(fontFamily = PoppinsFontFamily),
+    labelMedium = baseline.labelMedium.copy(fontFamily = PoppinsFontFamily),
+    labelSmall = baseline.labelSmall.copy(fontFamily = PoppinsFontFamily),
 )
