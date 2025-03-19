@@ -58,6 +58,10 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
 
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    implementation(libs.logging.interceptor)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
