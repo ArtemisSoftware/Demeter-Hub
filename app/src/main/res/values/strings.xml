@@ -2,7 +2,7 @@
     <string name="app_name">DemeterHub</string>
     <string name="skip">Skip</string>
     <string name="welcome">Welcome to</string>
-    <string name="food_hub">FoodHub</string>
+    <string name="demeter_hub">DemeterHub</string>
     <string name="food_hub_desc">Your favourite foods delivered fast at your door.</string>
     <string name="alread_have_account">Already have an account? Login</string>
     <string name="dont_have_account">Don\'t have an account? Signup</string>

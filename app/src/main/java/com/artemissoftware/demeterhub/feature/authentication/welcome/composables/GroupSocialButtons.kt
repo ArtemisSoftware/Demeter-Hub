@@ -29,7 +29,8 @@ internal fun GroupSocialButtons(
 ) {
 
     Column(
-        modifier = modifier
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing2_5)
     ) {
         Row(
             modifier = Modifier
