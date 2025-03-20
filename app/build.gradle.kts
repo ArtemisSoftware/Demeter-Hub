@@ -63,7 +63,7 @@ dependencies {
     implementation(libs.converter.moshi)
     implementation(libs.logging.interceptor)
 
-    //implementation(libs.navigation.compose)
+    implementation(libs.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
 
 
