@@ -9,7 +9,10 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
+import com.artemissoftware.demeterhub.core.designsystem.localShape
+import com.artemissoftware.demeterhub.core.designsystem.shape
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -49,10 +52,20 @@ fun DemeterHubTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
+    CompositionLocalProvider(
+//        localWindow provides if(isLandScape) landScape else portrait,
+//        localSpacing provides spacing,
+//        localDimension provides dimensionPortrait,
+        localShape provides shape,
+//        localPalette provides if (darkTheme) paletteDark else paletteLight,
+//        localFixedPalette provides fixedPalette,
+//        localPokemonPalette provides pokemonPalette,
+    ) {
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
 }
