@@ -14,7 +14,9 @@ import androidx.compose.ui.platform.LocalContext
 import com.artemissoftware.demeterhub.core.designsystem.dimensionPortrait
 import com.artemissoftware.demeterhub.core.designsystem.localDimension
 import com.artemissoftware.demeterhub.core.designsystem.localShape
+import com.artemissoftware.demeterhub.core.designsystem.localSpacing
 import com.artemissoftware.demeterhub.core.designsystem.shape
+import com.artemissoftware.demeterhub.core.designsystem.spacing
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -56,7 +58,7 @@ fun DemeterHubTheme(
     }
     CompositionLocalProvider(
 //        localWindow provides if(isLandScape) landScape else portrait,
-//        localSpacing provides spacing,
+        localSpacing provides spacing,
         localDimension provides dimensionPortrait,
         localShape provides shape,
 //        localPalette provides if (darkTheme) paletteDark else paletteLight,
