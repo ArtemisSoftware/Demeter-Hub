@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.artemissoftware.demeterhub.feature.authentication.signup.SignUpScreen
 import com.artemissoftware.demeterhub.feature.authentication.welcome.WelcomeScreen
 
 
@@ -17,5 +18,9 @@ fun NavGraphBuilder.authenticationNavGraph(
             navigateToLogin = {},
             navigateToSignUp = {}
         )
+    }
+
+    composable<AuthenticationRoute.SignUp> {
+        SignUpScreen()
     }
 }
