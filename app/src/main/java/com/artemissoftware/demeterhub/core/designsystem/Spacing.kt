@@ -13,6 +13,7 @@ data class Spacing(
     val spacing2: Dp,
     val spacing2_5: Dp,
     val spacing3: Dp,
+    val spacing3_5: Dp,
     val spacing4: Dp,
     val spacing10: Dp,
     val spacing20: Dp,
@@ -25,6 +26,7 @@ internal val spacing = Spacing(
     spacing2 = 16.dp,
     spacing2_5 = 20.dp,
     spacing3 = 24.dp,
+    spacing3_5 = 28.dp,
     spacing4 = 32.dp,
     spacing10 = 80.dp,
     spacing20 = 160.dp
