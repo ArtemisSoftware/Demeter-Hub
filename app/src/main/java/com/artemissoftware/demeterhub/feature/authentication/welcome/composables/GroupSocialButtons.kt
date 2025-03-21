@@ -23,6 +23,8 @@ import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 
 @Composable
 internal fun GroupSocialButtons(
+    textColor: Color = Color.White,
+    dividerColor: Color = Color.White,
     onFacebookClicked: () -> Unit,
     onGoogleClicked: () -> Unit,
     modifier: Modifier = Modifier,
@@ -43,18 +45,18 @@ internal fun GroupSocialButtons(
                 modifier = Modifier
                     .weight(1f),
                 thickness = MaterialTheme.dimension.dividerHeight,
-                color = Color.White
+                color = dividerColor
             )
             Text(
                 text = stringResource(id = R.string.sign_in_with),
-                color = Color.White,
+                color = textColor,
                 modifier = Modifier.padding(MaterialTheme.spacing.spacing1)
             )
             HorizontalDivider(
                 modifier = Modifier
                     .weight(1f),
                 thickness = MaterialTheme.dimension.dividerHeight,
-                color = Color.White
+                color = dividerColor
             )
         }
 
