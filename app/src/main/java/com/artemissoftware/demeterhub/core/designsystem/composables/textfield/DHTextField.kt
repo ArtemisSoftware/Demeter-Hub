@@ -40,8 +40,7 @@ fun DHTextField(
     onValueChange: (String) -> Unit,
     label: String? = null,
     modifier: Modifier = Modifier,
-
-//    enabled: Boolean = true,
+    enabled: Boolean = true,
 //    readOnly: Boolean = false,
 
 //    placeholder: @Composable (() -> Unit)? = null,
@@ -71,7 +70,7 @@ fun DHTextField(
             value = value,
             onValueChange = onValueChange,
             modifier = modifier,
-//            enabled = enabled,
+            enabled = enabled,
 //            readOnly = readOnly,
             textStyle = LocalTextStyle.current.copy(fontWeight = FontWeight.SemiBold),
             label = null,

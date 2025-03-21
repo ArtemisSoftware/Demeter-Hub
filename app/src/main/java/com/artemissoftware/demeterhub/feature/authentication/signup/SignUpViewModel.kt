@@ -1,0 +1,120 @@
+package com.artemissoftware.demeterhub.feature.authentication.signup
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class SignUpViewModel @Inject constructor(): ViewModel() {
+    private val _state = MutableStateFlow(SignUpState())
+    val state = _state.asStateFlow()
+
+    fun onTriggerEvent(event: SignUpEvent){
+        when(event){
+            is SignUpEvent.UpdateEmail -> updateEmail(event.email)
+            is SignUpEvent.UpdateName -> updateName(event.name)
+            is SignUpEvent.UpdatePassword -> updatePassword(event.password)
+            SignUpEvent.SignUp -> signUp()
+        }
+    }
+
+    private fun updateEmail(email: String) = with(_state) {
+        update {
+            it.copy(email = email)
+        }
+    }
+
+    private fun updateName(name: String) = with(_state) {
+        update {
+            it.copy(name = name)
+        }
+    }
+
+    private fun updatePassword(password: String) = with(_state) {
+        update {
+            it.copy(email = password)
+        }
+    }
+
+
+    private fun signUp() {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(isLoading = true)
+            }
+//            _uiState.value = SignupEvent.Loading
+//            try {
+//                val response = safeApiCall {
+//                    foodApi.signUp(
+//                        SignUpRequest(
+//                            name = name.value,
+//                            email = email.value,
+//                            password = password.value
+//                        )
+//                    )
+//                }
+//                when (response) {
+//                    is ApiResponse.Success -> {
+//                        _uiState.value = SignupEvent.Success
+//                        session.storeToken(response.data.token)
+//                        _navigationEvent.emit(SigupNavigationEvent.NavigateToHome)
+//                    }
+//
+//                    else -> {
+//                        val errr = (response as? ApiResponse.Error)?.code ?: 0
+//                        error = "Sign In Failed"
+//                        errorDescription = "Failed to sign up"
+//                        when (errr) {
+//                            400 -> {
+//                                error = "Invalid Credintials"
+//                                errorDescription = "Please enter correct details."
+//                            }
+//                        }
+//                        _uiState.value = SignupEvent.Error
+//                    }
+//                }
+//
+//
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//                _uiState.value = SignupEvent.Error
+//            }
+//
+        }
+    }
+//
+//    fun onLoginClicked() {
+//        viewModelScope.launch {
+//            _navigationEvent.emit(SigupNavigationEvent.NavigateToLogin)
+//        }
+//    }
+
+//    override fun onGoogleError(msg: String) {
+//        viewModelScope.launch {
+//            errorDescription = msg
+//            error = "Google Sign In Failed"
+//            _uiState.value = SignupEvent.Error
+//        }
+//    }
+//
+//    override fun onFacebookError(msg: String) {
+//        viewModelScope.launch {
+//            errorDescription = msg
+//            error = "Facebook Sign In Failed"
+//            _uiState.value = SignupEvent.Error
+//        }
+//    }
+//
+//    override fun onSocialLoginSuccess(token: String) {
+//        viewModelScope.launch {
+//            session.storeToken(token)
+//            _uiState.value = SignupEvent.Success
+//            _navigationEvent.emit(SigupNavigationEvent.NavigateToHome)
+//        }
+//    }
+}

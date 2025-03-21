@@ -1,12 +1,5 @@
 package com.artemissoftware.demeterhub.feature.authentication.signup
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,30 +8,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,8 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.artemissoftware.demeterhub.R
 import com.artemissoftware.demeterhub.core.designsystem.composables.button.DHButton
 import com.artemissoftware.demeterhub.core.presentation.composables.scaffold.DHScaffold
@@ -59,29 +36,27 @@ import com.artemissoftware.demeterhub.core.designsystem.spacing
 import com.artemissoftware.demeterhub.feature.authentication.welcome.composables.GroupSocialButtons
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import com.artemissoftware.demeterhub.ui.theme.Grey1
-import com.artemissoftware.demeterhub.ui.theme.Primary
-
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import kotlin.reflect.KFunction1
 
 @Composable
-fun SignUpScreen(){
-    SignUpContent(
+fun SignUpScreen(viewModel: SignUpViewModel = hiltViewModel()){
 
+    val state = viewModel.state.collectAsStateWithLifecycle().value
+
+    SignUpContent(
+        state = state,
+        onEvent = viewModel::onTriggerEvent
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SignUpContent(
-//    navController: NavController,
-//    viewModel: SignUpViewModel = hiltViewModel()
+    state: SignUpState,
+    onEvent: (SignUpEvent) -> Unit
 ) {
-//    val name = viewModel.name.collectAsStateWithLifecycle()
-//    val email = viewModel.email.collectAsStateWithLifecycle()
-//    val password = viewModel.password.collectAsStateWithLifecycle()
+
 //    val errorMessage = remember { mutableStateOf<String?>(null) }
-//    val loading = remember { mutableStateOf(false) }
 //    val sheetState = rememberModalBottomSheetState()
 //    val scope = rememberCoroutineScope()
 //    var showDialog by remember { mutableStateOf(false) }
@@ -140,17 +115,16 @@ private fun SignUpContent(
             )
         },
         content =  {
-
-            Box(modifier = Modifier
-                .fillMaxSize()){
-
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ){
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    //Box(modifier = Modifier.weight(1f))
                     Text(
                         text = stringResource(id = R.string.sign_up),
                         fontSize = 32.sp,
@@ -165,20 +139,23 @@ private fun SignUpContent(
                         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3)
                     ) {
                         DHTextField(
-                            value = "name.value",
-                            onValueChange = { /*viewModel.onNameChange(it)*/ },
+                            value = state.name,
+                            enabled = !state.isLoading,
+                            onValueChange = { onEvent(SignUpEvent.UpdateName(it)) },
                             label = stringResource(id = R.string.full_name),
                             modifier = Modifier.fillMaxWidth()
                         )
                         DHTextField(
-                            value = "email.value",
-                            onValueChange = { /*viewModel.onEmailChange(it)*/ },
+                            value = state.email,
+                            enabled = !state.isLoading,
+                            onValueChange = { onEvent(SignUpEvent.UpdateEmail(it)) },
                             label = stringResource(id = R.string.email),
                             modifier = Modifier.fillMaxWidth()
                         )
                         DHTextField(
-                            value = "password.value",
-                            onValueChange = { /*viewModel.onPasswordChange(it)*/ },
+                            value = state.password,
+                            enabled = !state.isLoading,
+                            onValueChange = { onEvent(SignUpEvent.UpdatePassword(it)) },
                             label = stringResource(id = R.string.password),
                             modifier = Modifier.fillMaxWidth(),
                             visualTransformation = PasswordVisualTransformation(),
@@ -196,8 +173,8 @@ private fun SignUpContent(
                     //            Text(text = errorMessage.value ?: "", color = Color.Red)
                     DHButton(
                         text = stringResource(id = R.string.sign_up),
-                        onClick = { /*viewModel::onSignUpClick*/ },
-                        isLoading = /*loading.value*/false,
+                        onClick = { onEvent(SignUpEvent.SignUp) },
+                        isLoading = state.isLoading,
                         modifier = Modifier.fillMaxWidth(0.8F)
                     )
 
@@ -248,8 +225,6 @@ private fun SignUpContent(
 @Composable
 private fun SignUpContentPreview() {
     DemeterHubTheme {
-        SignUpContent(
-
-        )
+        SignUpContent(state = SignUpState(), onEvent = {})
     }
 }
