@@ -9,12 +9,14 @@ import androidx.compose.ui.unit.dp
 
 data class Shapes(
     val noCorners: Shape,
-    val buttonCorners: Shape
+    val buttonCorners: Shape,
+    val textFieldCorners: Shape
 )
 
 internal val shape = Shapes(
     noCorners = RoundedCornerShape(0),
     buttonCorners = RoundedCornerShape(32.dp),
+    textFieldCorners = RoundedCornerShape(10.dp),
 )
 
 internal val localShape = staticCompositionLocalOf<Shapes> { throw IllegalStateException("No theme installed") }
