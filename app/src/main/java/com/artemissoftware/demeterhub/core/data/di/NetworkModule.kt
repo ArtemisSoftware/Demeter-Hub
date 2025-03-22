@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.core.data.remote.di
+package com.artemissoftware.demeterhub.core.data.di
 
 import com.artemissoftware.demeterhub.core.data.remote.api.DemeterHubApi
 import dagger.Module
