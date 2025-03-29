@@ -25,7 +25,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.artemissoftware.demeterhub.R
@@ -35,10 +34,9 @@ import com.artemissoftware.demeterhub.core.designsystem.composables.textfield.DH
 import com.artemissoftware.demeterhub.core.designsystem.dimension
 import com.artemissoftware.demeterhub.core.designsystem.spacing
 import com.artemissoftware.demeterhub.core.presentation.composables.event.ManageUIEvents
-import com.artemissoftware.demeterhub.feature.authentication.presentation.welcome.composables.GroupSocialButtons
+import com.artemissoftware.demeterhub.feature.authentication.presentation.composables.GroupSocialButtons
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import com.artemissoftware.demeterhub.ui.theme.Grey1
-import kotlin.reflect.KFunction1
 
 @Composable
 fun SignUpScreen(
@@ -92,7 +90,7 @@ private fun SignUpContent(
 //        }
 
     DHScaffold(
-        showError = state.error,
+        errorInfo = state.errorInfo,
         background = {
             Image(
                 painter = painterResource(id = R.drawable.ic_auth_bg),
@@ -191,7 +189,6 @@ private fun SignUpContent(
             }
 
     }
-
     )
 }
 

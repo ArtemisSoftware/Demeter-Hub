@@ -11,26 +11,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.demeterhub.core.designsystem.spacing
 import com.artemissoftware.demeterhub.core.presentation.composables.sheet.DHErrorModalBottomSheet
+import com.artemissoftware.demeterhub.core.presentation.models.ErrorInfo
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
-import kotlinx.coroutines.launch
 
 @Composable
 fun DHScaffold(
@@ -38,7 +32,7 @@ fun DHScaffold(
     background: @Composable () -> Unit = {},
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
-    showError: String? = null,
+    errorInfo: ErrorInfo? = null,
 //    uiEvent: Flow<UiEvent>? = null,
 //    errorState: ErrorState? = null
 ) {
@@ -90,7 +84,7 @@ fun DHScaffold(
                             ) {
                                 content.invoke()
                                 DHErrorModalBottomSheet(
-                                    showError = showError,
+                                    errorInfo = errorInfo,
                                     modifier = Modifier.fillMaxWidth()
                                 )
                             }
@@ -120,7 +114,7 @@ fun DHScaffold(
 @Composable
 private fun CustomScaffoldPreview() {
     DemeterHubTheme {
-        var showError by remember { mutableStateOf<String?>(null) }
+        var error by remember { mutableStateOf<ErrorInfo?>(null) }
 
 //        var isLoading by remember { mutableStateOf(false) }
 //        val scope = rememberCoroutineScope()
@@ -147,7 +141,7 @@ private fun CustomScaffoldPreview() {
 //            uiEvent = snackbarFlow,
 //            isLoading = isLoading,
 //            errorState = errorState,
-            showError = showError,
+            errorInfo = error,
             content = {
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -156,9 +150,9 @@ private fun CustomScaffoldPreview() {
                 ) {
                     Text("I am the scaffold")
 
-                    Text("showError = $showError")
+                    Text("showError = ${error?.message}")
                     Button(
-                        onClick = { showError = "THis is a mistake and an error" },
+                        onClick = { error = ErrorInfo(message = "THis is a mistake and an error") },
                         content = {
                             Text("Toggle error modal")
                         }

@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.presentation.welcome.composables
+package com.artemissoftware.demeterhub.feature.authentication.presentation.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

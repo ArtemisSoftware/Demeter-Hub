@@ -38,21 +38,22 @@ import com.artemissoftware.demeterhub.R
 import com.artemissoftware.demeterhub.core.designsystem.composables.button.DHButton
 import com.artemissoftware.demeterhub.core.designsystem.composables.button.DHButtonSize
 import com.artemissoftware.demeterhub.core.designsystem.spacing
+import com.artemissoftware.demeterhub.core.presentation.models.ErrorInfo
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import kotlinx.coroutines.launch
 
 
 @Composable
 fun DHErrorModalBottomSheet(
-    showError: String? = null,
+    errorInfo: ErrorInfo? = null,
     modifier: Modifier = Modifier
 ) {
     val bottomSheetState = rememberModalBottomSheetState()
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
-    LaunchedEffect(key1 = showError) {
-        openBottomSheet = (showError != null)
+    LaunchedEffect(key1 = errorInfo) {
+        openBottomSheet = (errorInfo != null)
     }
 
     if (openBottomSheet) {
@@ -63,19 +64,21 @@ fun DHErrorModalBottomSheet(
             sheetState = bottomSheetState,
             modifier = modifier
         ) {
-            ErrorSheet(
-                title = "Title",
-                description = showError ?: "",
-                onClick = {
-                    scope
-                        .launch { bottomSheetState.hide() }
-                        .invokeOnCompletion {
-                            if (!bottomSheetState.isVisible) {
-                                openBottomSheet = false
+            errorInfo?.let {
+                ErrorSheet(
+                    title = it.title,
+                    description = it.message,
+                    onClick = {
+                        scope
+                            .launch { bottomSheetState.hide() }
+                            .invokeOnCompletion {
+                                if (!bottomSheetState.isVisible) {
+                                    openBottomSheet = false
+                                }
                             }
-                        }
-                }
-            )
+                    }
+                )
+            }
         }
     }
 }
@@ -139,7 +142,7 @@ private fun ErrorSheetPreview() {
 @Composable
 private fun DHErrorModalBottomSheetPreview() {
 
-    var showError by remember { mutableStateOf<String?>(null) }
+    var error by remember { mutableStateOf<ErrorInfo?>(null) }
 
     DemeterHubTheme {
         Box {
@@ -151,7 +154,7 @@ private fun DHErrorModalBottomSheetPreview() {
             ) {
 
                 Button(
-                    onClick = { showError = "THis is a mistake and an error" },
+                    onClick = { error = ErrorInfo(message = "THis is a mistake and an error") },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
                     Text(text = "Show Bottom Sheet")
@@ -160,7 +163,7 @@ private fun DHErrorModalBottomSheetPreview() {
 
             DHErrorModalBottomSheet(
                 modifier = Modifier.fillMaxWidth(),
-                showError = showError
+                errorInfo = error
             )
         }
     }
