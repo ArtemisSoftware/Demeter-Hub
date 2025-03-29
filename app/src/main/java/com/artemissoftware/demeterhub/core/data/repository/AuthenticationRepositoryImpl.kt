@@ -3,6 +3,7 @@ package com.artemissoftware.demeterhub.core.data.repository
 import com.artemissoftware.demeterhub.core.data.datastore.source.SessionDataStore
 import com.artemissoftware.demeterhub.core.data.mapper.toAuthentication
 import com.artemissoftware.demeterhub.core.data.remote.HandleNetwork
+import com.artemissoftware.demeterhub.core.data.remote.dto.authentication.LogInRequest
 import com.artemissoftware.demeterhub.core.data.remote.dto.authentication.SignUpRequest
 import com.artemissoftware.demeterhub.core.data.remote.source.DemeterHubApiSource
 import com.artemissoftware.demeterhub.core.domain.Resource
@@ -23,6 +24,17 @@ class AuthenticationRepositoryImpl(
         return Resource.Success(Authentication(""))
 //        return HandleNetwork.safeNetworkCall {
 //            demeterHubApiSource.signUp(request = SignUpRequest(name = name, email = email, password = password))
+//                .toAuthentication()
+//                .also {
+//                    sessionDataStore.setToken(token = it.token)
+//                }
+//        }
+    }
+
+    override suspend fun login(email: String, password: String): Resource<Authentication> {
+        return Resource.Success(Authentication(""))
+//        return HandleNetwork.safeNetworkCall {
+//            demeterHubApiSource.login(request = LogInRequest(email = email, password = password))
 //                .toAuthentication()
 //                .also {
 //                    sessionDataStore.setToken(token = it.token)

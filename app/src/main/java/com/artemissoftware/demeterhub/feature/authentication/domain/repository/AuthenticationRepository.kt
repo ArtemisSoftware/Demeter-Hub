@@ -5,4 +5,5 @@ import com.artemissoftware.demeterhub.feature.authentication.domain.models.Authe
 
 interface AuthenticationRepository {
     suspend fun signUp(name: String, email: String, password: String): Resource<Authentication>
+    suspend fun login(email: String, password: String): Resource<Authentication>
 }
