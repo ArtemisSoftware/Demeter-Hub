@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 data class Dimension(
     val socialButtonHeight: Dp,
     val buttonHeight: Dp,
-    val buttonHeightL: Dp,
+    val buttonHeightLarge: Dp,
     val iconSize: DpSize,
     val dividerHeight: Dp,
 )
@@ -18,7 +18,7 @@ data class Dimension(
 val dimensionPortrait = Dimension(
     socialButtonHeight = 38.dp,
     buttonHeight = 48.dp,
-    buttonHeightL = 58.dp,
+    buttonHeightLarge = 58.dp,
     iconSize = DpSize(width = 24.dp, height = 24.dp),
     dividerHeight = 1.dp,
 )
