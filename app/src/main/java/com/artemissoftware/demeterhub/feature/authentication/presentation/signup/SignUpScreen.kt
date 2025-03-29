@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.signup
+package com.artemissoftware.demeterhub.feature.authentication.presentation.signup
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -35,7 +35,7 @@ import com.artemissoftware.demeterhub.core.designsystem.composables.textfield.DH
 import com.artemissoftware.demeterhub.core.designsystem.dimension
 import com.artemissoftware.demeterhub.core.designsystem.spacing
 import com.artemissoftware.demeterhub.core.presentation.composables.event.ManageUIEvents
-import com.artemissoftware.demeterhub.feature.authentication.welcome.composables.GroupSocialButtons
+import com.artemissoftware.demeterhub.feature.authentication.presentation.welcome.composables.GroupSocialButtons
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import com.artemissoftware.demeterhub.ui.theme.Grey1
 import kotlin.reflect.KFunction1

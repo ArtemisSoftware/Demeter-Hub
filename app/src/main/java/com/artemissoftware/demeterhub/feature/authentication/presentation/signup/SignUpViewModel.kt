@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.signup
+package com.artemissoftware.demeterhub.feature.authentication.presentation.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import com.artemissoftware.demeterhub.core.presentation.event.UiEvent
 import com.artemissoftware.demeterhub.core.presentation.event.UiEventViewModel
 import com.artemissoftware.demeterhub.core.presentation.util.extensions.toUiText
 import com.artemissoftware.demeterhub.feature.authentication.domain.usecase.SignUpUseCase
-import com.artemissoftware.demeterhub.feature.authentication.navigation.AuthenticationRoute
+import com.artemissoftware.demeterhub.feature.authentication.presentation.navigation.AuthenticationRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

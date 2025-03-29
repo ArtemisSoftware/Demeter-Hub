@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.navigation
+package com.artemissoftware.demeterhub.feature.authentication.presentation.navigation
 
 import kotlinx.serialization.Serializable
 

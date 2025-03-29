@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.welcome.composables
+package com.artemissoftware.demeterhub.feature.authentication.presentation.welcome.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

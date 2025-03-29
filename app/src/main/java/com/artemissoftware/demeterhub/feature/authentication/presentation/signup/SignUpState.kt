@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.signup
+package com.artemissoftware.demeterhub.feature.authentication.presentation.signup
 
 data class SignUpState(
     val isLoading: Boolean = false,

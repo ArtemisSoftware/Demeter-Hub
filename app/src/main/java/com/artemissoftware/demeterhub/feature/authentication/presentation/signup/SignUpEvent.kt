@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.signup
+package com.artemissoftware.demeterhub.feature.authentication.presentation.signup
 
 sealed interface SignUpEvent {
     data class UpdateName(val name: String): SignUpEvent

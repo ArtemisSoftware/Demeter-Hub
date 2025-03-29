@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.authentication.welcome
+package com.artemissoftware.demeterhub.feature.authentication.presentation.welcome
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.artemissoftware.demeterhub.R
 import com.artemissoftware.demeterhub.core.designsystem.spacing
-import com.artemissoftware.demeterhub.feature.authentication.welcome.composables.Background
-import com.artemissoftware.demeterhub.feature.authentication.welcome.composables.GroupSocialButtons
+import com.artemissoftware.demeterhub.feature.authentication.presentation.welcome.composables.Background
+import com.artemissoftware.demeterhub.feature.authentication.presentation.welcome.composables.GroupSocialButtons
 import com.artemissoftware.demeterhub.ui.theme.Black12
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import com.artemissoftware.demeterhub.ui.theme.Primary

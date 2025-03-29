@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.artemissoftware.demeterhub.feature.authentication.navigation.AuthenticationRoute
-import com.artemissoftware.demeterhub.feature.authentication.navigation.authenticationNavGraph
+import com.artemissoftware.demeterhub.feature.authentication.presentation.navigation.AuthenticationRoute
+import com.artemissoftware.demeterhub.feature.authentication.presentation.navigation.authenticationNavGraph
 
 @Composable
 fun RootNavGraph(
