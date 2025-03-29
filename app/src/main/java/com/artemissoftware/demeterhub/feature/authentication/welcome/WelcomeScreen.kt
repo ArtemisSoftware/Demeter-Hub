@@ -110,21 +110,21 @@ private fun WelcomeContent(
                 text = stringResource(id = R.string.welcome),
                 color = Color.Black,
                 modifier = Modifier,
-                fontSize = 50.sp,
+                style = MaterialTheme.typography.displayMedium,
                 fontWeight = FontWeight.Bold
             )
             Text(
                 text = stringResource(id = R.string.demeter_hub),
                 color = Primary,
                 modifier = Modifier,
-                fontSize = 50.sp,
+                style = MaterialTheme.typography.displayMedium,
                 fontWeight = FontWeight.Bold
             )
 
             Text(
                 text = stringResource(id = R.string.food_hub_desc),
                 color = Black12,
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
                     .fillMaxWidth(0.85F)
                     .padding(vertical = MaterialTheme.spacing.spacing2)

@@ -4,11 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.demeterhub.feature.authentication.domain.usecase.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
@@ -55,7 +57,7 @@ class SignUpViewModel @Inject constructor(
     private fun signUp() = with(_state.value) {
         viewModelScope.launch {
             updateLoading(true)
-
+            delay(5.seconds)
             signUpUseCase(name = name, password = password, email = email)
                 .onSuccess {
                     updateLoading(false)

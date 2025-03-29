@@ -12,6 +12,7 @@ data class Dimension(
     val buttonHeight: Dp,
     val buttonHeightLarge: Dp,
     val iconSize: DpSize,
+    val iconSizeMedium: DpSize,
     val dividerHeight: Dp,
 )
 
@@ -20,6 +21,7 @@ val dimensionPortrait = Dimension(
     buttonHeight = 48.dp,
     buttonHeightLarge = 58.dp,
     iconSize = DpSize(width = 24.dp, height = 24.dp),
+    iconSizeMedium = DpSize(width = 28.dp, height = 28.dp),
     dividerHeight = 1.dp,
 )
 

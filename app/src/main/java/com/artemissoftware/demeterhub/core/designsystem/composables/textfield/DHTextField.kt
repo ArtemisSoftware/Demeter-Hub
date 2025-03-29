@@ -61,8 +61,11 @@ fun DHTextField(
     Column(Modifier.padding(vertical = 8.dp)) {
         label?.let {
             Row {
-                Spacer(modifier = Modifier.size(4.dp))
-                Text(text = label, color = Grey20)
+                Text(
+                    style = MaterialTheme.typography.labelLarge,
+                    text = label,
+                    color = Grey20
+                )
             }
         }
         Spacer(modifier = Modifier.size(8.dp))

@@ -50,6 +50,7 @@ internal fun GroupSocialButtons(
             Text(
                 text = stringResource(id = R.string.sign_in_with),
                 color = textColor,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(MaterialTheme.spacing.spacing1)
             )
             HorizontalDivider(

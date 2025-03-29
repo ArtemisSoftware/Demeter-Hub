@@ -60,6 +60,7 @@ fun DHButton(
                     )
                 } else {
                     Text(
+                        style = MaterialTheme.typography.bodyMedium,
                         text = text,
                         color = Color.White,
                         modifier = Modifier

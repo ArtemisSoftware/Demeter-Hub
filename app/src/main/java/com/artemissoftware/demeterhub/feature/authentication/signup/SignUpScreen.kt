@@ -32,6 +32,7 @@ import com.artemissoftware.demeterhub.R
 import com.artemissoftware.demeterhub.core.designsystem.composables.button.DHButton
 import com.artemissoftware.demeterhub.core.presentation.composables.scaffold.DHScaffold
 import com.artemissoftware.demeterhub.core.designsystem.composables.textfield.DHTextField
+import com.artemissoftware.demeterhub.core.designsystem.dimension
 import com.artemissoftware.demeterhub.core.designsystem.spacing
 import com.artemissoftware.demeterhub.feature.authentication.welcome.composables.GroupSocialButtons
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
@@ -132,16 +133,16 @@ private fun SignUpContent(
                 ) {
                     Text(
                         text = stringResource(id = R.string.sign_up),
-                        fontSize = 32.sp,
+                        style = MaterialTheme.typography.displaySmall,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    Spacer(modifier = Modifier.size(20.dp))
+                    Spacer(modifier = Modifier.size(MaterialTheme.spacing.spacing1_5))
 
                     Column(
                         modifier = Modifier.fillMaxWidth(),
-                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3)
+                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing1)
                     ) {
                         DHTextField(
                             value = state.name,
@@ -168,31 +169,31 @@ private fun SignUpContent(
                                 Image(
                                     painter = painterResource(id = R.drawable.ic_eye),
                                     contentDescription = null,
-                                    modifier = Modifier.size(24.dp)
+                                    modifier = Modifier.size(MaterialTheme.dimension.iconSize)
                                 )
                             }
                         )
                     }
 
-                    Spacer(modifier = Modifier.size(28.dp))
-                    //            Text(text = errorMessage.value ?: "", color = Color.Red)
+                    Spacer(modifier = Modifier.size(MaterialTheme.spacing.spacing1_5))
+
                     DHButton(
                         text = stringResource(id = R.string.sign_up),
                         onClick = { onEvent(SignUpEvent.SignUp) },
                         isLoading = state.isLoading,
-                        modifier = Modifier.fillMaxWidth(0.8F)
                     )
 
-                    Spacer(modifier = Modifier.size(28.dp))
+                    Spacer(modifier = Modifier.size(MaterialTheme.spacing.spacing1_5))
 
                     Text(
                         text = stringResource(id = R.string.alread_have_account),
+                        style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier
-                            .padding(8.dp)
+                            .fillMaxWidth()
+                            .padding(MaterialTheme.spacing.spacing1)
                             .clickable {
                                 navigateToLogin()
-                            }
-                            .fillMaxWidth(),
+                            },
                         textAlign = TextAlign.Center
                     )
 

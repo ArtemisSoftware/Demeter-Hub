@@ -16,7 +16,9 @@ fun NavGraphBuilder.authenticationNavGraph(
     composable<AuthenticationRoute.Welcome> {
         WelcomeScreen(
             navigateToLogin = {},
-            navigateToSignUp = {}
+            navigateToSignUp = {
+                navController.navigate(AuthenticationRoute.SignUp)
+            }
         )
     }
 

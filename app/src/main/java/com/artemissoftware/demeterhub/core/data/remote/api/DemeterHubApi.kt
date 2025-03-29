@@ -11,6 +11,6 @@ interface DemeterHubApi {
     suspend fun signUp(@Body request: SignUpRequest): AuthenticationDto
 
     companion object {
-        const val BASE_URL = ""
+        const val BASE_URL = "Http://www.food.ag"
     }
 }
