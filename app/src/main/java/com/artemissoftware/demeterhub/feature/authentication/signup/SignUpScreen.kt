@@ -34,6 +34,7 @@ import com.artemissoftware.demeterhub.core.presentation.composables.scaffold.DHS
 import com.artemissoftware.demeterhub.core.designsystem.composables.textfield.DHTextField
 import com.artemissoftware.demeterhub.core.designsystem.dimension
 import com.artemissoftware.demeterhub.core.designsystem.spacing
+import com.artemissoftware.demeterhub.core.presentation.composables.event.ManageUIEvents
 import com.artemissoftware.demeterhub.feature.authentication.welcome.composables.GroupSocialButtons
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import com.artemissoftware.demeterhub.ui.theme.Grey1
@@ -52,6 +53,13 @@ fun SignUpScreen(
         onEvent = viewModel::onTriggerEvent,
         navigateToLogin = navigateToLogin
     )
+
+    ManageUIEvents(
+       uiEvent = viewModel.uiEvent,
+        onNavigateWithRoute = {
+
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,36 +70,8 @@ private fun SignUpContent(
     navigateToLogin: () -> Unit
 ) {
 
-//    val errorMessage = remember { mutableStateOf<String?>(null) }
-//    val sheetState = rememberModalBottomSheetState()
-//    val scope = rememberCoroutineScope()
-//    var showDialog by remember { mutableStateOf(false) }
-//    LaunchedEffect(errorMessage.value) {
-//        if (errorMessage.value != null)
-//            scope.launch {
-//                showDialog = true
-//            }
-//    }
 
-//        val uiState = viewModel.uiState.collectAsState()
-//        when (uiState.value) {
-//
-//            is SignUpViewModel.SignupEvent.Error -> {
-//                // show error
-//                loading.value = false
-//                errorMessage.value = "Failed"
-//            }
-//
-//            is SignUpViewModel.SignupEvent.Loading -> {
-//                loading.value = true
-//                errorMessage.value = null
-//            }
-//
-//            else -> {
-//                loading.value = false
-//                errorMessage.value = null
-//            }
-//        }
+
 //        val context = LocalContext.current
 //        LaunchedEffect(true) {
 //            viewModel.navigationEvent.collectLatest { event ->
@@ -112,6 +92,7 @@ private fun SignUpContent(
 //        }
 
     DHScaffold(
+        showError = state.error,
         background = {
             Image(
                 painter = painterResource(id = R.drawable.ic_auth_bg),

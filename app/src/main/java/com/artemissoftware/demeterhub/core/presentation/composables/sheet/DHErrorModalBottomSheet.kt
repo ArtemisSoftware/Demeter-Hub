@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun DHErrorModalBottomSheet(
-    showError: Boolean,
+    showError: String? = null,
     modifier: Modifier = Modifier
 ) {
     val bottomSheetState = rememberModalBottomSheetState()
@@ -52,7 +52,7 @@ fun DHErrorModalBottomSheet(
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = showError) {
-        openBottomSheet = showError
+        openBottomSheet = (showError != null)
     }
 
     if (openBottomSheet) {
@@ -65,7 +65,7 @@ fun DHErrorModalBottomSheet(
         ) {
             ErrorSheet(
                 title = "Title",
-                description = "Description",
+                description = showError ?: "",
                 onClick = {
                     scope
                         .launch { bottomSheetState.hide() }
@@ -139,7 +139,7 @@ private fun ErrorSheetPreview() {
 @Composable
 private fun DHErrorModalBottomSheetPreview() {
 
-    var showError by remember { mutableStateOf(false) }
+    var showError by remember { mutableStateOf<String?>(null) }
 
     DemeterHubTheme {
         Box {
@@ -151,7 +151,7 @@ private fun DHErrorModalBottomSheetPreview() {
             ) {
 
                 Button(
-                    onClick = { showError = !showError },
+                    onClick = { showError = "THis is a mistake and an error" },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
                     Text(text = "Show Bottom Sheet")

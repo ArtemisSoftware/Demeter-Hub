@@ -38,7 +38,7 @@ fun DHScaffold(
     background: @Composable () -> Unit = {},
     modifier: Modifier = Modifier,
     isLoading: Boolean = false,
-    showError: Boolean = false,
+    showError: String? = null,
 //    uiEvent: Flow<UiEvent>? = null,
 //    errorState: ErrorState? = null
 ) {
@@ -120,7 +120,7 @@ fun DHScaffold(
 @Composable
 private fun CustomScaffoldPreview() {
     DemeterHubTheme {
-        var showError by remember { mutableStateOf(false) }
+        var showError by remember { mutableStateOf<String?>(null) }
 
 //        var isLoading by remember { mutableStateOf(false) }
 //        val scope = rememberCoroutineScope()
@@ -158,7 +158,7 @@ private fun CustomScaffoldPreview() {
 
                     Text("showError = $showError")
                     Button(
-                        onClick = { showError = !showError },
+                        onClick = { showError = "THis is a mistake and an error" },
                         content = {
                             Text("Toggle error modal")
                         }

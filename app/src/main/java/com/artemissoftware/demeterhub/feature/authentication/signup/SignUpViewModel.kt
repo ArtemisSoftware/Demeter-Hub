@@ -2,7 +2,11 @@ package com.artemissoftware.demeterhub.feature.authentication.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.artemissoftware.demeterhub.core.presentation.event.UiEvent
+import com.artemissoftware.demeterhub.core.presentation.event.UiEventViewModel
+import com.artemissoftware.demeterhub.core.presentation.util.extensions.toUiText
 import com.artemissoftware.demeterhub.feature.authentication.domain.usecase.SignUpUseCase
+import com.artemissoftware.demeterhub.feature.authentication.navigation.AuthenticationRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +19,7 @@ import kotlin.time.Duration.Companion.seconds
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
-): ViewModel() {
+): UiEventViewModel() {
 
     private val _state = MutableStateFlow(SignUpState())
     val state = _state.asStateFlow()
@@ -49,7 +53,13 @@ class SignUpViewModel @Inject constructor(
 
     private fun updateLoading(isLoading: Boolean) = with(_state) {
         update {
-            it.copy(isLoading = isLoading)
+            it.copy(isLoading = isLoading, error = null)
+        }
+    }
+
+    private fun updateError(error: String) = with(_state) {
+        update {
+            it.copy(error = error)
         }
     }
 
@@ -61,9 +71,11 @@ class SignUpViewModel @Inject constructor(
             signUpUseCase(name = name, password = password, email = email)
                 .onSuccess {
                     updateLoading(false)
+                    sendEvent()
                 }
-                .onFailure {
+                .onFailure { error ->
                     updateLoading(false)
+                    updateError(error.toUiText())
                 }
 
 //            try {
@@ -105,6 +117,15 @@ class SignUpViewModel @Inject constructor(
 //
         }
     }
+
+    private fun sendEvent(){
+        viewModelScope.launch {
+            sendUiEvent(
+                UiEvent.NavigateWithRoute(AuthenticationRoute.Home)
+            )
+        }
+    }
+
 //
 //    fun onLoginClicked() {
 //        viewModelScope.launch {

@@ -8,4 +8,7 @@ sealed class AuthenticationRoute {
 
     @Serializable
     object SignUp
+
+    @Serializable
+    object Home
 }
