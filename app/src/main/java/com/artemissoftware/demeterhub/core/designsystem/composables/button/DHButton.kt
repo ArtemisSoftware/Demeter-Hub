@@ -7,7 +7,9 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.demeterhub.core.designsystem.dimension
 import com.artemissoftware.demeterhub.core.designsystem.spacing
 import com.artemissoftware.demeterhub.ui.theme.DemeterHubTheme
 import com.artemissoftware.demeterhub.ui.theme.Primary
@@ -31,12 +32,13 @@ import com.artemissoftware.demeterhub.ui.theme.Primary
 fun DHButton(
     text: String,
     onClick: () -> Unit,
+    height: DHButtonSize = DHButtonSize.NORMAL,
     isLoading: Boolean = false,
     modifier: Modifier = Modifier
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.height(MaterialTheme.dimension.buttonHeightL),
+        modifier = modifier.height(height.toDp()),
         colors = ButtonDefaults.buttonColors(containerColor = Primary),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
     ) {
@@ -73,10 +75,20 @@ fun DHButton(
 @Composable
 private fun DHButtonPreview() {
     DemeterHubTheme {
-        DHButton(
-            onClick = {},
-            text = "I am button"
-        )
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            DHButton(
+                height = DHButtonSize.NORMAL,
+                onClick = {},
+                text = "Normal height"
+            )
+
+            DHButton(
+                height = DHButtonSize.SMALL,
+                onClick = {},
+                text = "Small height"
+            )
+        }
+
     }
 }
 

@@ -21,6 +21,8 @@ fun NavGraphBuilder.authenticationNavGraph(
     }
 
     composable<AuthenticationRoute.SignUp> {
-        SignUpScreen()
+        SignUpScreen(
+            navigateToLogin = {}
+        )
     }
 }

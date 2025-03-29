@@ -2,6 +2,7 @@ package com.artemissoftware.demeterhub.feature.authentication.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.artemissoftware.demeterhub.feature.authentication.domain.usecase.SignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,7 +11,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(): ViewModel() {
+class SignUpViewModel @Inject constructor(
+    private val signUpUseCase: SignUpUseCase
+): ViewModel() {
+
     private val _state = MutableStateFlow(SignUpState())
     val state = _state.asStateFlow()
 
@@ -41,13 +45,25 @@ class SignUpViewModel @Inject constructor(): ViewModel() {
         }
     }
 
+    private fun updateLoading(isLoading: Boolean) = with(_state) {
+        update {
+            it.copy(isLoading = isLoading)
+        }
+    }
 
-    private fun signUp() {
+
+    private fun signUp() = with(_state.value) {
         viewModelScope.launch {
-            _state.update {
-                it.copy(isLoading = true)
-            }
-//            _uiState.value = SignupEvent.Loading
+            updateLoading(true)
+
+            signUpUseCase(name = name, password = password, email = email)
+                .onSuccess {
+                    updateLoading(false)
+                }
+                .onFailure {
+                    updateLoading(false)
+                }
+
 //            try {
 //                val response = safeApiCall {
 //                    foodApi.signUp(

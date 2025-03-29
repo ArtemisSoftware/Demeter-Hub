@@ -39,13 +39,17 @@ import com.artemissoftware.demeterhub.ui.theme.Grey1
 import kotlin.reflect.KFunction1
 
 @Composable
-fun SignUpScreen(viewModel: SignUpViewModel = hiltViewModel()){
+fun SignUpScreen(
+    navigateToLogin: () -> Unit,
+    viewModel: SignUpViewModel = hiltViewModel()
+){
 
     val state = viewModel.state.collectAsStateWithLifecycle().value
 
     SignUpContent(
         state = state,
-        onEvent = viewModel::onTriggerEvent
+        onEvent = viewModel::onTriggerEvent,
+        navigateToLogin = navigateToLogin
     )
 }
 
@@ -53,7 +57,8 @@ fun SignUpScreen(viewModel: SignUpViewModel = hiltViewModel()){
 @Composable
 private fun SignUpContent(
     state: SignUpState,
-    onEvent: (SignUpEvent) -> Unit
+    onEvent: (SignUpEvent) -> Unit,
+    navigateToLogin: () -> Unit
 ) {
 
 //    val errorMessage = remember { mutableStateOf<String?>(null) }
@@ -185,7 +190,7 @@ private fun SignUpContent(
                         modifier = Modifier
                             .padding(8.dp)
                             .clickable {
-                                /*viewModel.onLoginClicked()*/
+                                navigateToLogin()
                             }
                             .fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -204,20 +209,7 @@ private fun SignUpContent(
             }
 
     }
-//    if (showDialog) {
-//        ModalBottomSheet(onDismissRequest = { showDialog = false }, sheetState = sheetState) {
-//            BasicDialog(
-//                title = viewModel.error,
-//                description = viewModel.errorDescription,
-//                onClick = {
-//                    scope.launch {
-//                        sheetState.hide()
-//                        showDialog = false
-//                    }
-//                }
-//            )
-//        }
-//    }
+
     )
 }
 
@@ -225,6 +217,6 @@ private fun SignUpContent(
 @Composable
 private fun SignUpContentPreview() {
     DemeterHubTheme {
-        SignUpContent(state = SignUpState(), onEvent = {})
+        SignUpContent(state = SignUpState(), onEvent = {}, navigateToLogin = {})
     }
 }
