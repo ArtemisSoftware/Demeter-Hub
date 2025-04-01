@@ -62,7 +62,8 @@ fun DHScaffold(
             Scaffold(
 //                snackbarHost = { CustomSnackbarHost(snackbarHostState) },
                 modifier = Modifier
-                    .then(modifier),
+                    //.then(modifier)
+                ,
                 content = { innerPadding ->
 
                     Column(
@@ -79,7 +80,7 @@ fun DHScaffold(
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .padding(horizontal = MaterialTheme.spacing.spacing3_5)
+                                    .then(modifier)
                                     .padding(bottom = MaterialTheme.spacing.spacing3_5)
                             ) {
                                 content.invoke()

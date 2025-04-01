@@ -89,6 +89,7 @@ private fun SignUpContent(
 //        }
 
     DHScaffold(
+        modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing3_5),
         errorInfo = state.errorInfo,
         background = {
             Image(
