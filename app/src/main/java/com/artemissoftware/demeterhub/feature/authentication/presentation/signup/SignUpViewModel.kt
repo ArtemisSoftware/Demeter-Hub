@@ -1,9 +1,9 @@
 package com.artemissoftware.demeterhub.feature.authentication.presentation.signup
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.demeterhub.core.presentation.event.UiEvent
 import com.artemissoftware.demeterhub.core.presentation.event.UiEventViewModel
+import com.artemissoftware.demeterhub.core.presentation.models.ErrorInfo
 import com.artemissoftware.demeterhub.core.presentation.util.extensions.toUiText
 import com.artemissoftware.demeterhub.feature.authentication.domain.usecase.SignUpUseCase
 import com.artemissoftware.demeterhub.feature.authentication.presentation.navigation.AuthenticationRoute
@@ -53,13 +53,13 @@ class SignUpViewModel @Inject constructor(
 
     private fun updateLoading(isLoading: Boolean) = with(_state) {
         update {
-            it.copy(isLoading = isLoading, error = null)
+            it.copy(isLoading = isLoading, errorInfo = null)
         }
     }
 
-    private fun updateError(error: String) = with(_state) {
+    private fun updateError(error: ErrorInfo) = with(_state) {
         update {
-            it.copy(error = error)
+            it.copy(errorInfo = error)
         }
     }
 
@@ -67,7 +67,7 @@ class SignUpViewModel @Inject constructor(
     private fun signUp() = with(_state.value) {
         viewModelScope.launch {
             updateLoading(true)
-            delay(5.seconds)
+
             signUpUseCase(name = name, password = password, email = email)
                 .onSuccess {
                     updateLoading(false)
@@ -75,7 +75,10 @@ class SignUpViewModel @Inject constructor(
                 }
                 .onFailure { error ->
                     updateLoading(false)
-                    updateError(error.toUiText())
+                    updateError(ErrorInfo(
+                        title = "Authentication",
+                        message = error.toUiText()
+                    ))
                 }
 
 //            try {
