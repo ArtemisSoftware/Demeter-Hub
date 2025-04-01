@@ -12,16 +12,20 @@ data class Shapes(
     val noCorners: Shape,
     val buttonCorners: Shape,
     val textFieldCorners: Shape,
+    val ratingPillShape: Shape,
     val categoryPillShape: Shape,
-    val categoryPillImageShape: Shape
+    val categoryPillImageShape: Shape,
+    val shopCardShape: Shape
 )
 
 internal val shape = Shapes(
     noCorners = RoundedCornerShape(0),
     buttonCorners = RoundedCornerShape(32.dp),
     textFieldCorners = RoundedCornerShape(10.dp),
+    ratingPillShape = RoundedCornerShape(32.dp),
     categoryPillShape = RoundedCornerShape(45.dp),
-    categoryPillImageShape = RoundedCornerShape(50)
+    categoryPillImageShape = RoundedCornerShape(50.dp),
+    shopCardShape = RoundedCornerShape(16.dp)
 )
 
 internal val localShape = staticCompositionLocalOf<Shapes> { throw IllegalStateException("No theme installed") }

@@ -1,4 +1,4 @@
-package com.artemissoftware.demeterhub.feature.orders.domain.models
+package com.artemissoftware.demeterhub.feature.shop.domain.models
 
 data class Category(
     val createdAt: String,
