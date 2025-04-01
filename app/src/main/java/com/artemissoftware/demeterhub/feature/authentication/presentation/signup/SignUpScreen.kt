@@ -60,7 +60,6 @@ fun SignUpScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SignUpContent(
     state: SignUpState,
@@ -169,7 +168,6 @@ private fun SignUpContent(
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(MaterialTheme.spacing.spacing1)
                             .clickable {
                                 navigateToLogin()
                             },

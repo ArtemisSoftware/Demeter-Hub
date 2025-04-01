@@ -143,7 +143,6 @@ private fun LoginContent(
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(MaterialTheme.spacing.spacing1)
                             .clickable {
                                 navigateToSignUp()
                             },
