@@ -2,7 +2,7 @@ package com.artemissoftware.demeterhub.core.data.remote.dto.shop
 
 import com.squareup.moshi.Json
 
-data class ShopDto(
+data class RestaurantDto(
     @field:Json(name = "address")
     val address: String,
     @field:Json(name = "categoryId")
