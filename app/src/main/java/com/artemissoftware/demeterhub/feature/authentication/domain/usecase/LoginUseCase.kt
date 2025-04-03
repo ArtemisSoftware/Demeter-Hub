@@ -1,6 +1,6 @@
 package com.artemissoftware.demeterhub.feature.authentication.domain.usecase
 
-import com.artemissoftware.demeterhub.feature.authentication.domain.repository.AuthenticationRepository
+import com.artemissoftware.demeterhub.core.domain.repository.AuthenticationRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
