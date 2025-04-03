@@ -8,8 +8,8 @@ import com.artemissoftware.demeterhub.core.data.remote.dto.authentication.SignUp
 import com.artemissoftware.demeterhub.core.data.remote.source.DemeterHubApiSource
 import com.artemissoftware.demeterhub.core.domain.Resource
 import com.artemissoftware.demeterhub.core.domain.error.DataError
-import com.artemissoftware.demeterhub.feature.authentication.domain.models.Authentication
-import com.artemissoftware.demeterhub.feature.authentication.domain.repository.AuthenticationRepository
+import com.artemissoftware.demeterhub.core.domain.models.Authentication
+import com.artemissoftware.demeterhub.core.domain.repository.AuthenticationRepository
 
 class AuthenticationRepositoryImpl(
     private val demeterHubApiSource: DemeterHubApiSource,
